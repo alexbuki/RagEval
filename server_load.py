@@ -4,7 +4,7 @@ import time
 
 SERVER = "http://localhost:9621" # your running lightrag server
 DATA_FILE = "./data/ConfRAG.jsonl" # make sure dataset is downloaded here successfuly
-NUM_RECORDS = 1  # 1 record can have up to 10 website scrapes
+NUM_RECORDS = 10  # 1 record can have up to 10 website scrapes
 
 'CLEAR CURRENT DATA IF REQUESTED'
 q = input("Clear current data before loading? (y/n): ").strip().lower()

@@ -52,13 +52,14 @@ This script:
 - reads from `./data/ConfRAG.jsonl`
 - sends the website *content* to LightRAG `/documents/text` endpoint
 
-## 4) Query the data `TODO`
+## 4) Query the data
 
+With the the server still running, ask questions to LightRAG from the ConfRAG database `./data/ConfRAG_answers.jsonl`:
 
 ```bash
-python probe.py
+python query.py
 ```
 
-You can also use the LightRAG web UI to view the indexed data and query
+Stores the original question and response in formatted JSON.
 
-## 4) Run Evaluation `TODO`
+## 5) Run Evaluation `TODO`
