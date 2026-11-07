@@ -1,0 +1,86 @@
+{
+  "protocol": "Repository scoring functions; shared-corpus RAG adaptation, not exact benchmark reproduction.",
+  "matching": "Case-sensitive, as implemented in uploaded grade.py",
+  "coverage_reference": "All gold answer/reason clusters of each question",
+  "nmi_reference": "Full gold source partition; missing sources invalidate the partition",
+  "modes": {
+    "local": {
+      "expected_questions": 10,
+      "received_outputs": 10,
+      "missing_question_ids": [],
+      "scorable_outputs": 0,
+      "unscorable_outputs": 10,
+      "valid_partition_rate_over_received": 0.0,
+      "metrics": {
+        "answer_clustering": {
+          "n": 0,
+          "mean": null,
+          "population_std": null,
+          "failure_penalized_mean_over_received": 0.0,
+          "valid_partition_only_mean": null,
+          "valid_partition_only_n": 0
+        },
+        "answer_coverage": {
+          "n": 0,
+          "mean": null,
+          "population_std": null,
+          "failure_penalized_mean_over_received": 0.0,
+          "valid_partition_only_mean": null,
+          "valid_partition_only_n": 0
+        },
+        "reason_coverage": {
+          "n": 0,
+          "mean": null,
+          "population_std": null,
+          "failure_penalized_mean_over_received": 0.0,
+          "valid_partition_only_mean": null,
+          "valid_partition_only_n": 0
+        },
+        "retrieved_subset_nmi": {
+          "n": 0,
+          "mean": null,
+          "population_std": null
+        }
+      }
+    },
+    "naive": {
+      "expected_questions": 10,
+      "received_outputs": 10,
+      "missing_question_ids": [],
+      "scorable_outputs": 0,
+      "unscorable_outputs": 10,
+      "valid_partition_rate_over_received": 0.0,
+      "metrics": {
+        "answer_clustering": {
+          "n": 0,
+          "mean": null,
+          "population_std": null,
+          "failure_penalized_mean_over_received": 0.0,
+          "valid_partition_only_mean": null,
+          "valid_partition_only_n": 0
+        },
+        "answer_coverage": {
+          "n": 0,
+          "mean": null,
+          "population_std": null,
+          "failure_penalized_mean_over_received": 0.0,
+          "valid_partition_only_mean": null,
+          "valid_partition_only_n": 0
+        },
+        "reason_coverage": {
+          "n": 0,
+          "mean": null,
+          "population_std": null,
+          "failure_penalized_mean_over_received": 0.0,
+          "valid_partition_only_mean": null,
+          "valid_partition_only_n": 0
+        },
+        "retrieved_subset_nmi": {
+          "n": 0,
+          "mean": null,
+          "population_std": null
+        }
+      }
+    }
+  }
+}

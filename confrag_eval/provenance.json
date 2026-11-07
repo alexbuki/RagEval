@@ -1,0 +1,6 @@
+{
+  "source": "user-supplied ConfRAG-main.zip",
+  "repository": "https://github.com/XaiverYuan/ConfRAG",
+  "upstream_grade_sha256": "81e6299111d0f94bcd5e736a3351c5dbaf9b5d85d5df1a8c7aa27b2589569d5d",
+  "scoring_change": "None; config import replaced with CACHE_SIZE=1024"
+}

@@ -1,0 +1,21 @@
+id,mode,status,partition_status,answer_clustering,answer_coverage,reason_coverage,retrieved_subset_nmi,source_cluster_coverage,error
+1,local,unscorable,,,,,,0.0,no_generation: server returned a canned response
+1,naive,unscorable,,,,,,0.0,no_generation: server returned a canned response
+2,local,unscorable,,,,,,0.0,no_generation: server returned a canned response
+2,naive,unscorable,,,,,,0.0,no_generation: server returned a canned response
+3,local,unscorable,,,,,,0.0,no_generation: server returned a canned response
+3,naive,unscorable,,,,,,0.0,no_generation: server returned a canned response
+4,local,unscorable,,,,,,0.0,no_generation: server returned a canned response
+4,naive,unscorable,,,,,,0.0,no_generation: server returned a canned response
+5,local,unscorable,,,,,,0.0,no_generation: server returned a canned response
+5,naive,unscorable,,,,,,0.0,no_generation: server returned a canned response
+7,local,unscorable,,,,,,0.0,no_generation: server returned a canned response
+7,naive,unscorable,,,,,,0.0,no_generation: server returned a canned response
+8,local,unscorable,,,,,,0.0,no_generation: server returned a canned response
+8,naive,unscorable,,,,,,0.0,no_generation: server returned a canned response
+9,local,unscorable,,,,,,0.0,no_generation: server returned a canned response
+9,naive,unscorable,,,,,,0.0,no_generation: server returned a canned response
+11,local,unscorable,,,,,,0.0,no_generation: server returned a canned response
+11,naive,unscorable,,,,,,0.0,no_generation: server returned a canned response
+12,local,unscorable,,,,,,0.0,no_generation: server returned a canned response
+12,naive,unscorable,,,,,,0.0,no_generation: server returned a canned response
