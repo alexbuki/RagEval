@@ -69,3 +69,22 @@ The expected prediction structure is:
 
 Current Issue I am having is when I run query it says that for all sources, for local and for naive I get invalid structure. 
 
+_If it works then you can do the evaluation _
+
+## Run the evaluation:
+
+```bash
+python3 evaluate.py \
+  --data ../data/ConfRAG.jsonl \
+  --predictions ../data/ConfRAG_structured_answers_v2.jsonl \
+  --output-dir ../data/eval_results
+```
+
+The evaluator calculates:
+
+- Answer clustering
+- Answer coverage
+- Reason coverage
+- Valid structured-output rate
+
+Results are calculated separately for the `local` and `naive` retrieval modes.
