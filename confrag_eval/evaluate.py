@@ -1,4 +1,5 @@
 """Score structured predictions using the uploaded ConfRAG repository's functions."""
+# Notes:Compares generated answers with ConfRAG annotations and calculates answer clustering, answer coverage, and reason coverage.
 import argparse
 import copy
 import csv

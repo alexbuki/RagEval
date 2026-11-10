@@ -1,4 +1,18 @@
-"""Structured LightRAG queries. Run from RagEval with the existing index loaded."""
+#"Structured LightRAG queries. Run from RagEval with the existing index loaded
+# Notes: like the regular query.py file but asks ligthrag to organize evidence into answer clusteres required to do Confrag like evaluation
+""" Example json structure
+{
+  "answers": [
+    {
+      "answer": "One viewpoint",
+      "index": [1, 3],
+      "reason": ["Supporting reason"]
+    }
+  ]
+}
+
+"""
+
 import argparse
 import hashlib
 import json
@@ -40,8 +54,8 @@ No markdown fences, commentary, or citations outside the JSON object.'''
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--server', default='http://localhost:9621')
-    p.add_argument('--data', default='./data/ConfRAG.jsonl')
-    p.add_argument('--output', default='./data/ConfRAG_structured_answers.jsonl')
+    p.add_argument('--data', default='../data/ConfRAG.jsonl')
+    p.add_argument('--output', default='../data/ConfRAG_structured_answers.jsonl')
     p.add_argument('--num-records', type=int, default=10)
     p.add_argument('--modes', nargs='+', choices=['local','naive'], default=['local','naive'])
     p.add_argument('--cluster-count', choices=['gold','unknown'], default='gold')
@@ -72,10 +86,16 @@ def main():
         for row in rows:
             for mode in args.modes:
                 print(f'Starting id={row["id"]} mode={mode}', flush=True)
-                body = {'query':row['question'], 'mode':mode,
-                        'include_references':True, 'include_chunk_content':True,
-                        'enable_rerank':False,
-                        'user_prompt':instruction(row,mapping,args.cluster_count)}
+                body = {
+                    'query': row['question'],
+                    'mode': mode,
+                    'response_type': 'valid JSON only',
+                    'include_references': True,
+                    'include_chunk_content': True,
+                    'enable_rerank': False,
+                    'disable_user_prompt_prefix': True,
+                    'user_prompt': instruction(row, mapping, args.cluster_count),
+                }
                 result = {'id':row['id'], 'question':row['question'], 'mode':mode,
                           'request':body, 'cluster_count_condition':args.cluster_count}
                 try:

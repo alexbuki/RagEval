@@ -1,5 +1,6 @@
-# Source: XaiverYuan/ConfRAG, analysisResult/grade.py (user supplied ZIP).
+# Source: XaiverYuan/ConfRAG, analysisResult/grade.py.
 # Scoring functions unchanged. Only config import replaced.
+# Note: 
 import json
 import math
 

@@ -1,7 +1,7 @@
 import json
 from itertools import islice
 from pathlib import Path
-
+# Note: Just a utility file to load confrag, mapping LightRAG to Confrag indices and parsing structured model output. 
 
 def load_pilot(path, count):
     rows = []
