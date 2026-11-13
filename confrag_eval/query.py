@@ -108,12 +108,18 @@ def main():
                                   unknown_source_paths=unknown, off_question_source_paths=other)
                     if payload.get('llm_generated') is False:
                         result['status'] = 'no_generation'
+                        result['error'] = 'LightRAG returned no generated answer'
+                        print(f"No generation for question {row['id']} in {mode} mode")
+                        print(f"Server response: {payload.get('response', '')}")
                     else:
                         try:
                             result['prediction'] = parse_prediction(payload.get('response',''))
                             result['status'] = 'ok'
-                        except (ValueError,TypeError) as e:
-                            result.update(status='invalid_structure',error=str(e))
+                        except (ValueError, TypeError) as e:
+                            result.update(status='invalid_structure', error=str(e))
+                            print(f"Invalid JSON structure for question {row['id']} in {mode} mode")
+                            print(f"Parsing error: {e}")
+                            print(f"Raw model response: {payload.get('response', '')}")
                 except (requests.RequestException,ValueError) as e:
                     result.update(status='request_error',error=str(e))
                 f.write(json.dumps(result, ensure_ascii=False)+'\n')
