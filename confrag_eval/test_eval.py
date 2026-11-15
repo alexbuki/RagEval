@@ -106,5 +106,47 @@ class Checks(unittest.TestCase):
             self.assertEqual(rows[0]['retrieved_source_indices'],[1,3,7])
             with patch.object(sys,'argv',args),self.assertRaises(SystemExit):query.main()
 
+    def test_no_generation_status(self):
+        response = {
+            "llm_generated": False,
+            "response": "No relevant context found for the query.",
+            "references": []
+        }
+
+        result = score_one(
+            GOLD,
+            {
+                "id": 1,
+                "mode": "naive",
+                "response": response,
+                "status": "no_generation"
+            },
+            source_map([GOLD])
+        )
+
+        self.assertEqual(result["status"], "unscorable")
+        self.assertIsNone(result["answer_coverage"])
+
+    def test_invalid_structure_status(self):
+        response = {
+            "llm_generated": True,
+            "response": "The floodwaters drained into the oceans.",
+            "references": []
+        }
+
+        result = score_one(
+            GOLD,
+            {
+                "id": 1,
+                "mode": "naive",
+                "response": response,
+                "status": "invalid_structure"
+            },
+            source_map([GOLD])
+        )
+
+        self.assertEqual(result["status"], "unscorable")
+        self.assertIsNone(result["answer_clustering"])
+
 
 if __name__=='__main__': unittest.main()
