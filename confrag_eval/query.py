@@ -95,6 +95,8 @@ def main():
                     'enable_rerank': False,
                     'disable_user_prompt_prefix': True,
                     'user_prompt': instruction(row, mapping, args.cluster_count),
+                    'chunk_top_k': 2,
+                    'max_total_tokens': 3000,
                 }
                 result = {'id':row['id'], 'question':row['question'], 'mode':mode,
                           'request':body, 'cluster_count_condition':args.cluster_count}
