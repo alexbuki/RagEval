@@ -30,12 +30,62 @@ def source_map(rows):
                 }
     return result
 
+import json
+import re
 
+
+def extract_prediction_json(text):
+    if not isinstance(text, str) or not text.strip():
+        raise ValueError("Empty model response")
+
+    text = text.strip()
+
+    # First accept an ordinary JSON response.
+    try:
+        return json.loads(text)
+    except json.JSONDecodeError:
+        pass
+
+    # Remove standalone Markdown fence lines, including unclosed fences.
+    text = re.sub(
+        r"^\s*```(?:json)?\s*$",
+        "",
+        text,
+        flags=re.MULTILINE | re.IGNORECASE,
+    ).strip()
+
+    # The model may have added commentary before the JSON.
+    start = text.find("{")
+    if start == -1:
+        raise ValueError("No JSON object found in model response")
+
+    # Parse one complete object; retain surrounding text only in raw output.
+    obj, end = json.JSONDecoder().raw_decode(text, start)
+
+    if not isinstance(obj, dict) or "answers" not in obj:
+        raise ValueError("Expected a JSON object containing 'answers'")
+
+    # Avoid silently selecting one of several predictions.
+    trailing = text[end:].strip()
+    if re.search(r'[\{\[]', trailing):
+        # References contain square brackets, so only reject a second
+        # independently parseable JSON object/array.
+        for match in re.finditer(r'[\{\[]', trailing):
+            try:
+                extra, _ = json.JSONDecoder().raw_decode(
+                    trailing, match.start()
+                )
+            except json.JSONDecodeError:
+                continue
+            if isinstance(extra, dict) and "answers" in extra:
+                raise ValueError("Multiple prediction objects found")
+
+    return obj
 def parse_prediction(text):
     text = text.strip()
     if text.startswith('```') and text.endswith('```'):
         text = text.split('\n', 1)[1].rsplit('```', 1)[0].strip()
-    obj = json.loads(text)
+    obj = extract_prediction_json(text)
     if not isinstance(obj, dict) or not isinstance(obj.get('answers'), list):
         raise ValueError('Expected {"answers": [...]}')
     if len(obj['answers']) > 32:
