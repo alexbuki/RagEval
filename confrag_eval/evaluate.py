@@ -57,10 +57,10 @@ def score_one(row, sample, mapping):
 
 def main():
     p=argparse.ArgumentParser(description=__doc__)
-    p.add_argument('--data', default='./data/ConfRAG.jsonl')
-    p.add_argument('--answers', default='./data/ConfRAG_structured_answers.jsonl')
+    p.add_argument('--data', default='../data/ConfRAG.jsonl')
+    p.add_argument('--answers', default='../data/ConfRAG_structured_answers.jsonl')
     p.add_argument('--num-records', type=int, default=10)
-    p.add_argument('--out-dir', default='./data/confrag_scores')
+    p.add_argument('--out-dir', default='../data/confrag_scores')
     args=p.parse_args()
     rows=load_pilot(args.data,args.num_records)
     by_id={r['id']:r for r in rows};mapping=source_map(rows)
