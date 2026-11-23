@@ -1,2 +1,4 @@
 /data
 __pycache__/
+attention_probe_batch/results/
+attention_probe_batch/__pycache__/
