@@ -4,8 +4,8 @@ import requests
 SERVER = "http://localhost:9621" # your running lightrag server
 DATA_FILE = "./data/ConfRAG.jsonl" # make sure dataset is downloaded here successfuly
 OUTPUT_FILE = "./data/ConfRAG_answers.jsonl"
-MODES = ["local", "naive"]
-NUM_RECORDS = 20 # the number of questions asked [SAME NUMBER AS FROM SERVER_LOAD.py]
+MODES = ["hybrid", "naive"]
+NUM_RECORDS = 50 # the number of questions asked [SAME NUMBER AS FROM SERVER_LOAD.py]
 
 
 with open(DATA_FILE, "r", encoding="utf-8") as file, open(OUTPUT_FILE, "w", encoding="utf-8") as output:
